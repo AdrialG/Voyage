@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Voyage</string>
+    <string name="destination">destination</string>
+    <string name="join_now">Join Now</string>
+    <string name="voyage">Voyage</string>
+    <string name="explore_the_earth_with">Explore The Earth With</string>
+    <string name="please_login_to_continue">Please Login to Continue</string>
+    <string name="login">Login</string>
+    <string name="don_t_have_an_account">Don\'t Have An Account ?</string>
+    <string name="register">Register</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="please_create_a_new_account">Please Create A New Account</string>
+    <string name="already_have_an_account">Already Have An Account ?</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="logging_in">Getting You In…</string>
+    <string name="name">Name</string>
+    <string name="fill_please">Please Fill Before Proceeding!</string>
+    <string name="edit_profile_name">Edit Profile Name</string>
+    <string name="edit_password">Edit Password</string>
+    <string name="saved_destinations">Saved Destinations</string>
+    <string name="logout">Logout</string>
+    <string name="enter_new_name">Enter New Name</string>
+    <string name="enter_old_password">Enter Old Password</string>
+    <string name="enter_new_password">Enter New Password</string>
+    <string name="confirm_your_new_password">Confirm Your New Password</string>
+</resources>

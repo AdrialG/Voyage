@@ -24,4 +24,6 @@
     <string name="enter_old_password">Enter Old Password</string>
     <string name="enter_new_password">Enter New Password</string>
     <string name="confirm_your_new_password">Confirm Your New Password</string>
+    <string name="you_might_like">You Might Like</string>
+    <string name="destination_list">Destination List</string>
 </resources>

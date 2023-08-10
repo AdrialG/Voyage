@@ -17,12 +17,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.crocodic.core.api.ApiStatus
+import com.crocodic.core.extension.openActivity
 import com.crocodic.core.extension.snacked
 import com.crocodic.core.extension.textOf
 import com.voyageteam.voyage.R
 import com.voyageteam.voyage.base.BaseActivity
 import com.voyageteam.voyage.data.Session
 import com.voyageteam.voyage.databinding.ActivityProfileBinding
+import com.voyageteam.voyage.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import java.io.File
@@ -63,25 +65,10 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>(R
             showEditPasswordDialog()
         }
 
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    viewModel.apiResponse.collect {
-                        when (it.status) {
-                            ApiStatus.SUCCESS -> {
-                                binding.root.snacked("Profile Updated")
-                            }
-
-                            ApiStatus.ERROR -> {
-                                binding.root.snacked("Something Went Wrong")
-                                disconnect(it)
-                            }
-
-                            else -> loadingDialog.setResponse("Else")
-                        }
-                    }
-                }
-            }
+        binding.logoutButton.setOnClickListener {
+            viewModel.logout()
+            openActivity<LoginActivity>()
+            finishAffinity()
         }
 
     }
@@ -96,6 +83,9 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>(R
                                 val user = session.getUser()
                                 binding.data = user
 
+                            }
+                            ApiStatus.ERROR -> {
+                                binding.root.snacked("Something Went Wrong")
                             }
                             else -> {
 
@@ -125,6 +115,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>(R
                     delay(1000)
                     // Set the new name to the old name TextView
                     binding.profileName.text = newName
+
+                    binding.root.snacked("Name Updated")
                 }
 
             }
@@ -151,6 +143,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding, ProfileViewModel>(R
                 val confirmPass = editConfirmPassword.text.toString()
                 // Do something with the new name (e.g., update UI, save to database, etc.)
                 viewModel.updatePassword(oldPass, newPass, confirmPass)
+
+                binding.root.snacked("Password Updated")
             }
             .setNegativeButton("Cancel", null)
 

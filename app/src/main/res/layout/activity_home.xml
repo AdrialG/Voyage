@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.voyageteam.voyage.data.User" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,24 +16,120 @@
         android:layout_height="match_parent"
         tools:context=".ui.home.HomeActivity">
 
-        <Button
-            android:id="@+id/gotoprofile"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="go to profile"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/search_case"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/search_bg"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="100dp"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-            android:id="@+id/logoout"
+            <androidx.appcompat.widget.SearchView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                app:searchIcon="@drawable/search"
+                app:queryHint="Search Here"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/home_profile_picture_case"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:cardCornerRadius="20dp"
+            android:foreground="@drawable/search_bg"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/search_case"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/home_profile_picture"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    imageUrl='@{data.photo}'
+                    android:scaleType="centerCrop"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:contentDescription="@string/destination" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/you_might_like_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="logoout"
-            app:layout_constraintTop_toBottomOf="@id/gotoprofile"
+            android:text="@string/you_might_like"
+            android:textSize="26sp"
+            android:textColor="@color/main_blue"
+            android:fontFamily="@font/inter_bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/search_case"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/square_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@id/you_might_like_text" />
+
+        <ImageView
+            android:id="@+id/square_recycler_line"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:src="@drawable/line"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintTop_toBottomOf="@id/square_recycle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/destination" />
+
+        <TextView
+            android:id="@+id/destination_list_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/destination_list"
+            android:textSize="26sp"
+            android:textColor="@color/main_blue"
+            android:fontFamily="@font/inter_bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/square_recycler_line"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rectangle_recycle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintTop_toBottomOf="@id/destination_list_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,5 @@
 package com.voyageteam.voyage.ui.profile
 
-import android.widget.Toast
 import androidx.lifecycle.viewModelScope
 import com.crocodic.core.api.ApiCode
 import com.crocodic.core.api.ApiObserver
@@ -102,5 +101,14 @@ class ProfileViewModel  @Inject constructor(
                     }
                 })
         }
+
+    fun logout() = viewModelScope.launch {
+        ApiObserver({ apiService.logout() },
+            false, object : ApiObserver.ResponseListener {
+                override suspend fun onSuccess(response: JSONObject) {
+                    session.clearAll()
+                }
+            })
+    }
 
 }
